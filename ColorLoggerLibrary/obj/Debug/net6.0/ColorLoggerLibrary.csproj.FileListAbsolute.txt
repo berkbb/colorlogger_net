@@ -1,0 +1,12 @@
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/bin/Debug/net6.0/ColorLoggerLibrary.deps.json
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/bin/Debug/net6.0/ColorLoggerLibrary.dll
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/bin/Debug/net6.0/ref/ColorLoggerLibrary.dll
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/bin/Debug/net6.0/ColorLoggerLibrary.pdb
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/Debug/net6.0/ColorLoggerLibrary.csproj.AssemblyReference.cache
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/Debug/net6.0/ColorLoggerLibrary.GeneratedMSBuildEditorConfig.editorconfig
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/Debug/net6.0/ColorLoggerLibrary.AssemblyInfoInputs.cache
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/Debug/net6.0/ColorLoggerLibrary.AssemblyInfo.cs
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/Debug/net6.0/ColorLoggerLibrary.csproj.CoreCompileInputs.cache
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/Debug/net6.0/ColorLoggerLibrary.dll
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/Debug/net6.0/ref/ColorLoggerLibrary.dll
+/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/Debug/net6.0/ColorLoggerLibrary.pdb

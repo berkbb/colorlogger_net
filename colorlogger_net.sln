@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorLoggerLibrary", "ColorLoggerLibrary\ColorLoggerLibrary.csproj", "{3D7E661C-EDA3-41B1-81A5-E56E80B6179F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowCase", "ShowCase\ShowCase.csproj", "{FC1208A1-3F1F-462E-9380-D70D3B45A0EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D7E661C-EDA3-41B1-81A5-E56E80B6179F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D7E661C-EDA3-41B1-81A5-E56E80B6179F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D7E661C-EDA3-41B1-81A5-E56E80B6179F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D7E661C-EDA3-41B1-81A5-E56E80B6179F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC1208A1-3F1F-462E-9380-D70D3B45A0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC1208A1-3F1F-462E-9380-D70D3B45A0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC1208A1-3F1F-462E-9380-D70D3B45A0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC1208A1-3F1F-462E-9380-D70D3B45A0EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
