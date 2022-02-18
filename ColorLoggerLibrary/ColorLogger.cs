@@ -1,12 +1,13 @@
 ﻿namespace ColorLoggerLibrary;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 
 public class ColorLogger
 {
     /// <summary>
     /// Prints to console with color. Like Console.WriteLine() with colored foreground.
-    ///Note that coloring only available on external OS terminals. Visual Studio and Visual Studio Code does not support coloring.
+    ///Note that coloring only available on external OS terminals and Visual Studio and Visual Studio Code integrated terminal . Visual Studio and Visual Studio Code internalConsoke does not support coloring.
     /// </summary>
     /// <param name="msg">Message.</param>
     /// <param name="lvl">Log level.</param>
@@ -34,35 +35,38 @@ public class ColorLogger
                 break;
         }
         StringBuilder title = new StringBuilder(); // String builder for title.
-        var msgTitle = $"[{lvl}]"; // Title
-        var msgOut = $"> {msg}"; // Message
+        var msgTitle = $"⎧{lvl.ToString().ToUpper()}⎫"; // Title
+        var msgOut = $" → {msg}"; // Message
 
         // Append to title
         title.Append(msgTitle);
         for (int i = 0; i < Console.WindowWidth - msgTitle.Length - 1; i++)
         {
-            title.Append("-");
+            title.Append("⎯");
 
         }
         var upper = title.ToString(); // Upper
 
         // Calculating the lines.
+
         double divide = Convert.ToDouble(msgOut.Length) / Convert.ToDouble(Console.WindowWidth);
         divide = Math.Ceiling(divide);
+        var chunk = msgOut.Length / Convert.ToInt32(divide);
+
 
         //Print upper title.
         Console.WriteLine(upper);
 
         if (divide <= 1) // If 0 (empty) or 1 line.
         {
-            var newOut = $"| {msgOut}";
-            var printCount = Console.WindowWidth - newOut.Length;
+
+            var printCount = Console.WindowWidth - msgOut.Length;
 
             for (int i = 0; i < printCount; i++)
             {
                 if (i == 0)
                 {
-                    Console.Write($"| {msgOut}");
+                    Console.Write($"├ {msgOut}");
                 }
                 else if (i != printCount - 1)
                 {
@@ -71,7 +75,7 @@ public class ColorLogger
 
                 else
                 {
-                    Console.Write("|");
+                    Console.Write("┤");
 
                 }
 
@@ -81,45 +85,34 @@ public class ColorLogger
 
         else // 2 or more line.
         {
-            int stringStartIndex = 0;
+            var groups = msgOut.SplitwithCount(chunk).ToList();
 
-            for (int i = 0; i < divide; i++)
+            for (int i = 0; i < groups.Count(); i++)
             {
 
-                if (i == 0)
+
+
+                var printCount = Console.WindowWidth;
+                for (int j = 0; j < printCount; j++)
                 {
-                    var firstSub = msgOut.Substring(0, Console.WindowWidth - 4);
-                    stringStartIndex = firstSub.Length - 2;
-                    var newOut = $"| {firstSub} |";
-
-
-                    Console.WriteLine(newOut);
-
-                }
-                else
-                {
-
-                    var printCount = Console.WindowWidth;
-                    for (int j = 0; j < printCount; j++)
+                    if (j == 0)
                     {
-                        if (j == 0)
-                        {
-                            Console.Write($"|");
-                        }
-                        else if (j != printCount - 1)
-                        {
-                            Console.Write(" ");
-                        }
+                        Console.Write($"├ {groups[i]}");
+                    }
+                    else if (j != printCount - 2)
+                    {
+                        Console.Write(" ");
+                    }
 
-                        else
-                        {
-                            Console.Write("|");
-
-                        }
+                    else
+                    {
+                        Console.Write("┤");
 
                     }
-                    Console.WriteLine();
+
                 }
+                Console.WriteLine();
+
 
 
             }
@@ -129,7 +122,7 @@ public class ColorLogger
         // Print footer.
         for (int i = 0; i < upper.Length; i++)
         {
-            Console.Write("-");
+            Console.Write("⎯");
         }
         Console.WriteLine(); //Empty space.
 
