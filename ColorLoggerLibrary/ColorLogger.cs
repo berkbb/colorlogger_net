@@ -51,7 +51,7 @@ public class ColorLogger
 
         double divide = Convert.ToDouble(msgOut.Length) / Convert.ToDouble(Console.WindowWidth);
         divide = Math.Ceiling(divide);
-        var chunk = msgOut.Length / Convert.ToInt32(divide);
+        var chunk = msgOut.Length / Convert.ToInt32(divide) - 1;
 
 
         //Print upper title.
@@ -66,7 +66,7 @@ public class ColorLogger
             {
                 if (i == 0)
                 {
-                    Console.Write($"├ {msgOut}");
+                    Console.Write($"⎮ {msgOut}");
                 }
                 else if (i != printCount - 2)
                 {
@@ -75,7 +75,7 @@ public class ColorLogger
 
                 else
                 {
-                    Console.Write("┤");
+                    Console.Write("⎮");
 
                 }
 
@@ -90,27 +90,24 @@ public class ColorLogger
             for (int i = 0; i < groups.Count(); i++)
             {
 
-
-
                 var printCount = Console.WindowWidth;
-                for (int j = 0; j < printCount; j++)
+                var startPrint = $"⎮ {groups[i]}";
+                Console.Write(startPrint);
+                var spaceCount = printCount - startPrint.Length - 2;
+                if (spaceCount != 0) // If will filled space available.
                 {
-                    if (j == 0)
+                    for (int z = 0; z < spaceCount; z++)
                     {
-                        Console.Write($"├ {groups[i]}");
+                        Console.Write(" ");
                     }
-                    else if (j != printCount - 2)
-                    {
-                        Console.Write("*");
-                    }
-
-                    else
-                    {
-                        Console.Write("┤");
-
-                    }
-
                 }
+
+                Console.Write(" ⎮");
+
+
+
+
+
                 Console.WriteLine();
 
 

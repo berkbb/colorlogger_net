@@ -1,9 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>ColorLogger_NET</PackageId>
+    <Title>Color Logger for .NET.</Title>
+    <Version>1.0.0</Version>
+    <Authors>Berk Babadoğan</Authors>
+    <Description>Print colored logs on terminal for .NET.</Description>
+    <Language>en-US</Language>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/berkbb/colorlogger_net.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>
+      * Inital version.
+    </PackageReleaseNotes>
+    <Copyright>Copyright (c) 2022 Berk Babadoğan.</Copyright>
+    <PackageTags>log;colorlog;color logger</PackageTags>
+
+
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE.txt" Pack="true" PackagePath="/" />
+    <None Include="README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
 
 </Project>
