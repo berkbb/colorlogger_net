@@ -8,7 +8,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/ColorLoggerLibrary.csproj",
-        "projectName": "ColorLoggerLibrary",
+        "projectName": "ColorLogger_NET",
         "projectPath": "/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/ColorLoggerLibrary.csproj",
         "packagesPath": "/Users/berkbabadogan/.nuget/packages/",
         "outputPath": "/Users/berkbabadogan/Documents/GitHub/colorlogger_net/ColorLoggerLibrary/obj/",
