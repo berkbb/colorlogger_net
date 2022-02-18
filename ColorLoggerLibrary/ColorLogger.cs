@@ -62,13 +62,13 @@ public class ColorLogger
 
             var printCount = Console.WindowWidth - msgOut.Length;
 
-            for (int i = 0; i < printCount; i++)
+            for (int i = 0; i < printCount - 1; i++)
             {
                 if (i == 0)
                 {
                     Console.Write($"├ {msgOut}");
                 }
-                else if (i != printCount - 1)
+                else if (i != printCount - 2)
                 {
                     Console.Write(" ");
                 }
@@ -101,7 +101,7 @@ public class ColorLogger
                     }
                     else if (j != printCount - 2)
                     {
-                        Console.Write(" ");
+                        Console.Write("*");
                     }
 
                     else
