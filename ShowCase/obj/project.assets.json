@@ -2,20 +2,20 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "ColorLoggerLibrary/1.0.0": {
+      "ColorLogger_NET/1.0.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/ColorLoggerLibrary.dll": {}
+          "bin/placeholder/ColorLogger_NET.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ColorLoggerLibrary.dll": {}
+          "bin/placeholder/ColorLogger_NET.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "ColorLoggerLibrary/1.0.0": {
+    "ColorLogger_NET/1.0.1": {
       "type": "project",
       "path": "../ColorLoggerLibrary/ColorLoggerLibrary.csproj",
       "msbuildProject": "../ColorLoggerLibrary/ColorLoggerLibrary.csproj"
@@ -23,7 +23,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "ColorLoggerLibrary >= 1.0.0"
+      "ColorLogger_NET >= 1.0.1"
     ]
   },
   "packageFolders": {

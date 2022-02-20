@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageId>ColorLogger_NET</PackageId>
     <Title>Color Logger for .NET.</Title>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Berk Babadoğan</Authors>
     <Description>Print colored logs on terminal for .NET.</Description>
     <Language>en-US</Language>
@@ -17,7 +17,7 @@
     <RepositoryBranch>main</RepositoryBranch>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
-      * Inital version.
+      *  Support for console with simple text option, if console width is 0 (Console, not a terminal).
     </PackageReleaseNotes>
     <Copyright>Copyright (c) 2022 Berk Babadoğan.</Copyright>
     <PackageTags>log;colorlog;color logger</PackageTags>

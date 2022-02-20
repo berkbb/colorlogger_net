@@ -8,13 +8,13 @@
     ".NETCoreApp,Version=v6.0": {
       "ShowCase/1.0.0": {
         "dependencies": {
-          "ColorLoggerLibrary": "1.0.0"
+          "ColorLogger_NET": "1.0.1"
         },
         "runtime": {
           "ShowCase.dll": {}
         }
       },
-      "ColorLoggerLibrary/1.0.0": {
+      "ColorLogger_NET/1.0.1": {
         "runtime": {
           "ColorLoggerLibrary.dll": {}
         }
@@ -27,7 +27,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "ColorLoggerLibrary/1.0.0": {
+    "ColorLogger_NET/1.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

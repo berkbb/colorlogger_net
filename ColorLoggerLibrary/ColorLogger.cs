@@ -13,118 +13,132 @@ public class ColorLogger
     /// <param name="lvl">Log level.</param>
     public void Print(string msg, LogLevel lvl)
     {
+        var consoleNotTerminal = Convert.ToDouble(Console.WindowWidth) == 0 ? true : false; // Console or terminal.
         Console.WriteLine(); //Empty space.
 
-        //Foreground selector.
-        switch (lvl)
+        if (consoleNotTerminal) // Console
         {
-            case LogLevel.verbose:
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                break;
-            case LogLevel.debug:
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                break;
-            case LogLevel.info:
-                Console.ForegroundColor = ConsoleColor.Green;
-                break;
-            case LogLevel.warning:
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                break;
-            case LogLevel.error:
-                Console.ForegroundColor = ConsoleColor.Red;
-                break;
-        }
-        StringBuilder title = new StringBuilder(); // String builder for title.
-        var msgTitle = $"⎧{lvl.ToString().ToUpper()}⎫"; // Title
-        var msgOut = $" → {msg}"; // Message
 
-        // Append to title
-        title.Append(msgTitle);
-        for (int i = 0; i < Console.WindowWidth - msgTitle.Length - 1; i++)
-        {
-            title.Append("⎯");
+            Console.WriteLine($"{DateTime.Now} --> {lvl}\n---------------\n{msg}\n---------------");
 
         }
-        var upper = title.ToString(); // Upper
 
-        // Calculating the lines.
-
-        double divide = Convert.ToDouble(msgOut.Length) / Convert.ToDouble(Console.WindowWidth);
-        divide = Math.Ceiling(divide);
-        var chunk = msgOut.Length / Convert.ToInt32(divide) - 1;
-
-
-        //Print upper title.
-        Console.WriteLine(upper);
-
-        if (divide <= 1) // If 0 (empty) or 1 line.
+        else // Ternminal
         {
-
-            var printCount = Console.WindowWidth - msgOut.Length;
-
-            for (int i = 0; i < printCount - 1; i++)
+            //Foreground selector.
+            switch (lvl)
             {
-                if (i == 0)
-                {
-                    Console.Write($"⎮ {msgOut}");
-                }
-                else if (i != printCount - 2)
-                {
-                    Console.Write(" ");
-                }
+                case LogLevel.verbose:
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    break;
+                case LogLevel.debug:
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    break;
+                case LogLevel.info:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case LogLevel.warning:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                case LogLevel.error:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+            }
+            StringBuilder title = new StringBuilder(); // String builder for title.
+            var msgTitle = $"⎧{DateTime.Now} --> {lvl}⎫"; // Title
+            var msgOut = $" → {msg}"; // Message
 
-                else
-                {
-                    Console.Write("⎮");
-
-                }
+            // Append to title
+            title.Append(msgTitle);
+            for (int i = 0; i < Console.WindowWidth - msgTitle.Length - 1; i++)
+            {
+                title.Append("⎯");
 
             }
-            Console.WriteLine();
-        }
+            var upper = title.ToString(); // Upper
 
-        else // 2 or more line.
-        {
-            var groups = msgOut.SplitwithCount(chunk).ToList();
+            // Calculating the lines.
 
-            for (int i = 0; i < groups.Count(); i++)
+            double divide = Convert.ToDouble(msgOut.Length) / Convert.ToDouble(Console.WindowWidth);
+            divide = Math.Ceiling(divide);
+            var chunk = msgOut.Length / Convert.ToInt32(divide) - 1;
+
+
+            //Print upper title.
+            Console.WriteLine(upper);
+
+            if (divide <= 1) // If 0 (empty) or 1 line.
             {
 
-                var printCount = Console.WindowWidth;
-                var startPrint = $"⎮ {groups[i]}";
-                Console.Write(startPrint);
-                var spaceCount = printCount - startPrint.Length - 2;
-                if (spaceCount != 0) // If will filled space available.
+                var printCount = Console.WindowWidth - msgOut.Length;
+
+                for (int i = 0; i < printCount - 1; i++)
                 {
-                    for (int z = 0; z < spaceCount; z++)
+                    if (i == 0)
+                    {
+                        Console.Write($"⎮ {msgOut}");
+                    }
+                    else if (i != printCount - 2)
                     {
                         Console.Write(" ");
                     }
+
+                    else
+                    {
+                        Console.Write("⎮");
+
+                    }
+
                 }
-
-                Console.Write(" ⎮");
-
-
-
-
-
                 Console.WriteLine();
-
-
-
             }
+
+            else // 2 or more line.
+            {
+                var groups = msgOut.SplitwithCount(chunk).ToList();
+
+                for (int i = 0; i < groups.Count(); i++)
+                {
+
+                    var printCount = Console.WindowWidth;
+                    var startPrint = $"⎮ {groups[i]}";
+                    Console.Write(startPrint);
+                    var spaceCount = printCount - startPrint.Length - 2;
+                    if (spaceCount != 0) // If will filled space available.
+                    {
+                        for (int z = 0; z < spaceCount; z++)
+                        {
+                            Console.Write(" ");
+                        }
+                    }
+
+                    Console.Write(" ⎮");
+
+
+
+
+
+                    Console.WriteLine();
+
+
+
+                }
+            }
+
+
+            // Print footer.
+            for (int i = 0; i < upper.Length; i++)
+            {
+                Console.Write("⎯");
+            }
+            Console.WriteLine(); //Empty space.
+
+            // Reset foreground.
+            Console.ForegroundColor = ConsoleColor.White;
+
         }
 
 
-        // Print footer.
-        for (int i = 0; i < upper.Length; i++)
-        {
-            Console.Write("⎯");
-        }
-        Console.WriteLine(); //Empty space.
-
-        // Reset foreground.
-        Console.ForegroundColor = ConsoleColor.White;
     }
 
 
