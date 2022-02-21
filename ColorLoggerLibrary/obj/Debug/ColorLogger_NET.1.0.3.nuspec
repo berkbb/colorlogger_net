@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ColorLogger_NET</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>Color Logger for .NET.</title>
     <authors>Berk Babadoğan</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -10,7 +10,7 @@
     <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
     <readme>README.md</readme>
     <description>Print colored logs on terminal for .NET.</description>
-    <releaseNotes>*  In default, internal console do not support window width. Now, algorithm convert output target to console from terminal automatically with a simple try-catch block if window width undefined or equal to zero(internal console returns it).</releaseNotes>
+    <releaseNotes>* README.md updated.</releaseNotes>
     <copyright>Copyright (c) 2022 Berk Babadoğan.</copyright>
     <tags>log colorlog color logger</tags>
     <repository type="git" url="https://github.com/berkbb/colorlogger_net.git" branch="main" />

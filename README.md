@@ -1,7 +1,7 @@
 
 # Color Logger for .NET. 
 
-[![NuGet Version](https://img.shields.io/nuget/v/ColorLogger_NET?&label=nuget&color=informational&logo=nuget)](https://www.nuget.org/packages/ColorLogger_NET/) 
+[![NuGet Version](https://img.shields.io/nuget/v/ColorLogger_NET?color=informational&logo=nuget)](https://www.nuget.org/packages/ColorLogger_NET/) 
 [![NuGet Downloads](https://img.shields.io/nuget/dt/ColorLogger_NET?color=brightgreen&logo=nuget)](https://www.nuget.org/packages/ColorLogger_NET/)
 [![License](https://img.shields.io/github/license/berkbb/tcid_checker_net?color=important)](https://www.nuget.org/packages/ColorLogger_NET/)
 
