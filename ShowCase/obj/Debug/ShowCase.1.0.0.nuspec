@@ -7,7 +7,7 @@
     <description>Package Description</description>
     <dependencies>
       <group targetFramework="net6.0">
-        <dependency id="ColorLogger_NET" version="1.0.1" exclude="Build,Analyzers" />
+        <dependency id="ColorLogger_NET" version="1.0.2" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>

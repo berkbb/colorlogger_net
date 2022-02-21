@@ -44,18 +44,18 @@ public class ColorLogger
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
             }
-            StringBuilder title = new StringBuilder(); // String builder for title.
+            StringBuilder header = new StringBuilder(); // String builder for title.
             var msgTitle = $"⎧{DateTime.Now} --> {lvl}⎫"; // Title
             var msgOut = $" → {msg}"; // Message
 
             // Append to title
-            title.Append(msgTitle);
+            header.Append(msgTitle);
             for (int i = 0; i < Console.WindowWidth - msgTitle.Length - 1; i++)
             {
-                title.Append("⎯");
+                header.Append("⎯");
 
             }
-            var upper = title.ToString(); // Upper
+
 
             // Calculating the lines.
 
@@ -63,34 +63,38 @@ public class ColorLogger
             divide = Math.Ceiling(divide);
             var chunk = msgOut.Length / Convert.ToInt32(divide) - 1;
 
-
+            var title = header.ToString(); // Title
+            header.Clear();
             //Print upper title.
-            Console.WriteLine(upper);
+            Console.WriteLine(title);
 
+            StringBuilder body = new StringBuilder(); // String builder for body.
             if (divide <= 1) // If 0 (empty) or 1 line.
             {
 
                 var printCount = Console.WindowWidth - msgOut.Length;
 
+
                 for (int i = 0; i < printCount - 1; i++)
                 {
                     if (i == 0)
                     {
-                        Console.Write($"⎮ {msgOut}");
+                        body.Append($"⎮ {msgOut}");
                     }
                     else if (i != printCount - 2)
                     {
-                        Console.Write(" ");
+                        body.Append(" ");
                     }
 
                     else
                     {
-                        Console.Write("⎮");
+                        body.Append("⎮");
 
                     }
 
                 }
-                Console.WriteLine();
+                Console.WriteLine(body.ToString()); // Print body.
+                body.Clear();
             }
 
             else // 2 or more line.
@@ -102,36 +106,37 @@ public class ColorLogger
 
                     var printCount = Console.WindowWidth;
                     var startPrint = $"⎮ {groups[i]}";
-                    Console.Write(startPrint);
+                    body.Append(startPrint);
                     var spaceCount = printCount - startPrint.Length - 2;
                     if (spaceCount != 0) // If will filled space available.
                     {
                         for (int z = 0; z < spaceCount; z++)
                         {
-                            Console.Write(" ");
+                            body.Append(" ");
                         }
                     }
 
-                    Console.Write(" ⎮");
+                    body.Append(" ⎮");
 
 
 
 
 
-                    Console.WriteLine();
-
+                    Console.WriteLine(body.ToString()); // Print body.
+                    body.Clear();
 
 
                 }
             }
 
-
+            StringBuilder footer = new StringBuilder(); // String builder for footer.
             // Print footer.
-            for (int i = 0; i < upper.Length; i++)
+            for (int i = 0; i < title.Length; i++)
             {
-                Console.Write("⎯");
+                footer.Append("⎯");
             }
-            Console.WriteLine(); //Empty space.
+            Console.WriteLine(footer.ToString()); // Print footer.
+            footer.Clear();
 
             // Reset foreground.
             Console.ForegroundColor = ConsoleColor.White;
