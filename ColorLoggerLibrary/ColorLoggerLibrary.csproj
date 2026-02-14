@@ -3,11 +3,12 @@
   <PropertyGroup>
     <PackageId>ColorLogger_NET</PackageId>
     <Title>Color Logger for .NET.</Title>
-    <Version>1.0.3</Version>
+    <Version>1.1.0</Version>
     <Authors>Berk Babadoğan</Authors>
     <Description>Print colored logs on terminal for .NET.</Description>
     <Language>en-US</Language>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
@@ -17,7 +18,8 @@
     <RepositoryBranch>main</RepositoryBranch>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
-      * README.md updated.
+      * Updated target framework to .NET 10.
+      * Modernized logger implementation and API internals.
     </PackageReleaseNotes>
     <Copyright>Copyright (c) 2022 Berk Babadoğan.</Copyright>
     <PackageTags>log;colorlog;color logger</PackageTags>

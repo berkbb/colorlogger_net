@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ColorLogger_NET</id>
+    <version>1.1.0</version>
+    <title>Color Logger for .NET.</title>
+    <authors>Berk Babadoğan</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <readme>README.md</readme>
+    <description>Print colored logs on terminal for .NET.</description>
+    <releaseNotes>* Updated target framework to .NET 10.
+      * Modernized logger implementation and API internals.</releaseNotes>
+    <copyright>Copyright (c) 2022 Berk Babadoğan.</copyright>
+    <tags>log colorlog color logger</tags>
+    <repository type="git" url="https://github.com/berkbb/colorlogger_net.git" branch="main" commit="c479d75d48db6da7ed4cb899c40426741a402886" />
+    <dependencies>
+      <group targetFramework="net10.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Users/berkbabadogan/Documents/GitHub/logbox bundle/colorlogger_net/ColorLoggerLibrary/bin/Release/net10.0/ColorLoggerLibrary.dll" target="lib/net10.0/ColorLoggerLibrary.dll" />
+    <file src="/Users/berkbabadogan/Documents/GitHub/logbox bundle/colorlogger_net/ColorLoggerLibrary/LICENSE.txt" target="/LICENSE.txt" />
+    <file src="/Users/berkbabadogan/Documents/GitHub/logbox bundle/colorlogger_net/ColorLoggerLibrary/README.md" target="/README.md" />
+  </files>
+</package>

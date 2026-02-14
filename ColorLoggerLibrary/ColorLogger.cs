@@ -1,182 +1,126 @@
-﻿namespace ColorLoggerLibrary;
-using System.Diagnostics;
-using System.Text;
-using System.Text.RegularExpressions;
+namespace ColorLoggerLibrary;
 
-public class ColorLogger
+using System.Text;
+
+public sealed class ColorLogger
 {
     /// <summary>
-    /// Prints to console with color. Like Console.WriteLine() with colored foreground.
-    ///Note that coloring only available on external OS terminals and Visual Studio and Visual Studio Code integrated terminal . Visual Studio and Visual Studio Code internalConsoke does not support coloring.
+    /// Prints a message using a colored layout when an interactive terminal is available.
+    /// Falls back to plain output for redirected output or unsupported consoles.
     /// </summary>
-    /// <param name="msg">Message.</param>
-    /// <param name="lvl">Log level.</param>
     public void Print(string msg, LogLevel lvl)
     {
-        var consoleNotTerminal = Convert.ToDouble(Console.WindowWidth) == 0 ? true : false; // Console or terminal.
-        Console.WriteLine(); //Empty space.
+        msg ??= string.Empty;
 
-        if (consoleNotTerminal) // Console
+        Console.WriteLine();
+
+        if (!SupportsColorLayout())
         {
-
-            Console.WriteLine($"{DateTime.Now} --> {lvl}\n---------------\n{msg}\n---------------");
-
+            Console.WriteLine($"{DateTime.Now:O} --> {lvl}\n---------------\n{msg}\n---------------");
+            return;
         }
 
-        else // Ternminal
+        var previousColor = Console.ForegroundColor;
+
+        try
         {
-            //Foreground selector.
-            switch (lvl)
-            {
-                case LogLevel.verbose:
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    break;
-                case LogLevel.debug:
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    break;
-                case LogLevel.info:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case LogLevel.warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case LogLevel.error:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-            }
-            StringBuilder header = new StringBuilder(); // String builder for title.
-            var msgTitle = $"⎧{DateTime.Now} --> {lvl}⎫"; // Title
-            var msgOut = $" → {msg}"; // Message
+            Console.ForegroundColor = GetColorForLevel(lvl);
 
-            // Append to title
-            header.Append(msgTitle);
-            for (int i = 0; i < Console.WindowWidth - msgTitle.Length - 1; i++)
-            {
-                header.Append("⎯");
+            var width = Math.Max(GetConsoleWidth(), 24);
+            var title = BuildTitle(lvl, width);
+            var bodyWidth = Math.Max(1, width - 4); // "⎮ " + text + " ⎮"
+            var message = $" → {msg}";
 
-            }
-
-
-            // Calculating the lines.
-
-            double divide = Convert.ToDouble(msgOut.Length) / Convert.ToDouble(Console.WindowWidth);
-            divide = Math.Ceiling(divide);
-            var chunk = msgOut.Length / Convert.ToInt32(divide) - 1;
-
-            var title = header.ToString(); // Title
-            header.Clear();
-            //Print upper title.
             Console.WriteLine(title);
 
-            StringBuilder body = new StringBuilder(); // String builder for body.
-            if (divide <= 1) // If 0 (empty) or 1 line.
+            foreach (var line in message.SplitWithCount(bodyWidth))
             {
-
-                var printCount = Console.WindowWidth - msgOut.Length;
-
-
-                for (int i = 0; i < printCount - 1; i++)
-                {
-                    if (i == 0)
-                    {
-                        body.Append($"⎮ {msgOut}");
-                    }
-                    else if (i != printCount - 2)
-                    {
-                        body.Append(" ");
-                    }
-
-                    else
-                    {
-                        body.Append("⎮");
-
-                    }
-
-                }
-                Console.WriteLine(body.ToString()); // Print body.
-                body.Clear();
+                Console.WriteLine($"⎮ {line.PadRight(bodyWidth)} ⎮");
             }
 
-            else // 2 or more line.
-            {
-                var groups = msgOut.SplitwithCount(chunk).ToList();
-
-                for (int i = 0; i < groups.Count(); i++)
-                {
-
-                    var printCount = Console.WindowWidth;
-                    var startPrint = $"⎮ {groups[i]}";
-                    body.Append(startPrint);
-                    var spaceCount = printCount - startPrint.Length - 2;
-                    if (spaceCount != 0) // If will filled space available.
-                    {
-                        for (int z = 0; z < spaceCount; z++)
-                        {
-                            body.Append(" ");
-                        }
-                    }
-
-                    body.Append(" ⎮");
-
-
-
-
-
-                    Console.WriteLine(body.ToString()); // Print body.
-                    body.Clear();
-
-
-                }
-            }
-
-            StringBuilder footer = new StringBuilder(); // String builder for footer.
-            // Print footer.
-            for (int i = 0; i < title.Length; i++)
-            {
-                footer.Append("⎯");
-            }
-            Console.WriteLine(footer.ToString()); // Print footer.
-            footer.Clear();
-
-            // Reset foreground.
-            Console.ForegroundColor = ConsoleColor.White;
-
+            Console.WriteLine(new string('⎯', title.Length));
         }
-
-
+        finally
+        {
+            Console.ForegroundColor = previousColor;
+        }
     }
 
+    private static string BuildTitle(LogLevel level, int width)
+    {
+        var header = $"⎧{DateTime.Now:yyyy-MM-dd HH:mm:ss} --> {level}⎫";
+        if (header.Length >= width)
+        {
+            return header;
+        }
 
+        var builder = new StringBuilder(width);
+        builder.Append(header);
+        builder.Append('⎯', width - header.Length);
+        return builder.ToString();
+    }
 
+    private static int GetConsoleWidth()
+    {
+        try
+        {
+            return Console.WindowWidth;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+
+    private static bool SupportsColorLayout() =>
+        !Console.IsOutputRedirected &&
+        !Console.IsErrorRedirected &&
+        GetConsoleWidth() > 0;
+
+    private static ConsoleColor GetColorForLevel(LogLevel level) =>
+        level switch
+        {
+            LogLevel.verbose => ConsoleColor.Cyan,
+            LogLevel.debug => ConsoleColor.Magenta,
+            LogLevel.info => ConsoleColor.Green,
+            LogLevel.warning => ConsoleColor.Yellow,
+            LogLevel.error => ConsoleColor.Red,
+            _ => ConsoleColor.White,
+        };
 }
+
 /// <summary>
 /// Log level enum.
 /// </summary>
 public enum LogLevel
 {
     /// <summary>
-    /// Verbose - yellow
+    /// Verbose - cyan.
     /// </summary>
     verbose,
+
     /// <summary>
-    /// Debug - cyan.
+    /// Debug - magenta.
     /// </summary>
     debug,
+
     /// <summary>
-    /// İnfo - green.
+    /// Info - green.
     /// </summary>
     info,
+
     /// <summary>
-    /// Warning -- yellow.
+    /// Warning - yellow.
     /// </summary>
     warning,
+
     /// <summary>
     /// Error - red.
     /// </summary>
     error,
-    /// <summary>
-    /// Standart text print - white.
-    /// </summary>
-    unknown
 
+    /// <summary>
+    /// Standard text print - white.
+    /// </summary>
+    unknown,
 }

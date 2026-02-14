@@ -1,16 +1,30 @@
+namespace ColorLoggerLibrary;
+
 public static class Extensions
 {
-    public static IEnumerable<string> SplitwithCount(this string str, int chunkLength)
+    public static IEnumerable<string> SplitWithCount(this string str, int chunkLength)
     {
-        if (String.IsNullOrEmpty(str)) throw new ArgumentException();
-        if (chunkLength < 1) throw new ArgumentException();
+        ArgumentNullException.ThrowIfNull(str);
 
-        for (int i = 0; i < str.Length; i += chunkLength)
+        if (chunkLength < 1)
         {
-            if (chunkLength + i > str.Length)
-                chunkLength = str.Length - i;
+            throw new ArgumentOutOfRangeException(nameof(chunkLength), chunkLength, "Chunk length must be greater than zero.");
+        }
 
-            yield return str.Substring(i, chunkLength);
+        if (str.Length == 0)
+        {
+            yield return string.Empty;
+            yield break;
+        }
+
+        for (var i = 0; i < str.Length; i += chunkLength)
+        {
+            var currentLength = Math.Min(chunkLength, str.Length - i);
+            yield return str.Substring(i, currentLength);
         }
     }
+
+    // Backward compatible alias for older consumers.
+    public static IEnumerable<string> SplitwithCount(this string str, int chunkLength) =>
+        SplitWithCount(str, chunkLength);
 }

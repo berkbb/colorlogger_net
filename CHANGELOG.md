@@ -1,3 +1,9 @@
+## [1.1.0] - 2026-02-14
+
+* Updated target framework from .NET 6 to .NET 10.
+* Modernized `ColorLogger` implementation for safer terminal detection and color reset behavior.
+* Improved string chunking extension with argument validation and backward-compatible alias.
+
 ## [1.0.3] - 2022-02-21
 
 * README.md updated.
